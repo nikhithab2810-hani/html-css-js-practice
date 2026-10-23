@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <head>
     <title>
@@ -11,3 +12,176 @@
     
 </body>
 </html>
+=======
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Directory</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f5f9;
+      margin: 0;
+      padding: 30px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px #00000012;
+    }
+
+    h1 {
+      color: #23395d;
+      text-align: center;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      box-sizing: border-box;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+
+    input, select {
+      border: 1px solid #ccd3dd;
+    }
+
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 25px;
+    }
+
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+
+    th {
+      background: #eef3fb;
+    }
+
+    .delete-button {
+      background: #dc2626;
+      padding: 8px;
+    }
+
+    .message {
+      color: #dc2626;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Employee Directory</h1>
+    <p>Add and manage your employees.</p>
+
+    <form id="employeeForm">
+      <label for="employeeName">Employee Name</label>
+      <input
+        type="text"
+        id="employeeName"
+        placeholder="Enter employee name"
+        required
+      >
+
+      <label for="department">Department</label>
+      <select id="department" required>
+        <option value="">Select department</option>
+        <option value="IT">IT</option>
+        <option value="HR">HR</option>
+        <option value="Finance">Finance</option>
+        <option value="Sales">Sales</option>
+      </select>
+
+      <button type="submit">Add Employee</button>
+      <p id="message" class="message"></p>
+    </form>
+
+    <h2>Employee List</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Department</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="employeeList"></tbody>
+    </table>
+  </div>
+
+  <script>
+    const employeeForm = document.getElementById("employeeForm");
+    const employeeName = document.getElementById("employeeName");
+    const department = document.getElementById("department");
+    const employeeList = document.getElementById("employeeList");
+    const message = document.getElementById("message");
+
+    employeeForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const name = employeeName.value.trim();
+      const dept = department.value;
+
+      if (name === "" || dept === "") {
+        message.textContent = "Please fill in all fields.";
+        return;
+      }
+
+      const row = document.createElement("tr");
+
+      const nameCell = document.createElement("td");
+      nameCell.textContent = name;
+
+      const departmentCell = document.createElement("td");
+      departmentCell.textContent = dept;
+
+      const actionCell = document.createElement("td");
+      const deleteButton = document.createElement("button");
+
+      deleteButton.textContent = "Delete";
+      deleteButton.className = "delete-button";
+
+      deleteButton.addEventListener("click", function() {
+        row.remove();
+      });
+
+      actionCell.appendChild(deleteButton);
+      row.append(nameCell, departmentCell, actionCell);
+      employeeList.appendChild(row);
+
+      employeeName.value = "";
+      department.value = "";
+      message.textContent = "";
+      employeeName.focus();
+    });
+  </script>
+</body>
+</html>
+>>>>>>> 47b0947 (Update HTML and CSS)
